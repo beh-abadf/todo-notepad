@@ -1,0 +1,21 @@
+#panel {
+    height: 400px;
+    width: 350px;
+    box-shadow: -1px 1px 20px rgb(0, 0, 0);
+}
+
+form{
+    width: 300px;
+}
+
+#panel input
+{
+    height: 35px;
+    padding-right: 20px;
+    margin: 8px;
+}
+
+button
+{
+    margin-top: 20px;
+}

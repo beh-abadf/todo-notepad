@@ -1,0 +1,6 @@
+@import "global_fonts_style.css";
+
+* {
+    font-family: Arial;
+    font-size: 16px;
+}
