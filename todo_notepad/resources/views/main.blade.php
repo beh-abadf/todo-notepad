@@ -138,6 +138,13 @@
                 <!-- Row of notes cards -->
                 <div class="note-content">
 
+                    {{-- User authenticated but doesn't have any notes --}}
+                    @if ($notes->isEmpty())
+                        <div class="alert alert-danger" style="text-align: center;">
+                            You don't have any notes!
+                        </div>
+                    @endif
+
                     <div id="child_wrapper" class="card grid-center note-content">
 
                         @foreach ($notes as $note)

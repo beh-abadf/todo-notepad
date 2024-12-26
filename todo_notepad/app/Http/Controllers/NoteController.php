@@ -39,7 +39,7 @@ class NoteController extends Controller
 
             //Temporary null and red till user to be athenticated
             $notes = $this->retrieve($current_user);
-
+            
             return view('main', [
                 'notes' => $notes,
                 'user' => $current_user
