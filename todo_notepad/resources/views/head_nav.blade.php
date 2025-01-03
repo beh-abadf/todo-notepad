@@ -1,3 +1,4 @@
+{{-- Head navigation part of pages --}}
 <div id="head_nav" class="center text-bg-primary">
     <nav>
         <ul class="center">

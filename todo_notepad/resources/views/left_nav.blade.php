@@ -1,3 +1,4 @@
+{{-- Left navigation part of pages --}}
 <div id="left_nav" class="text-bg-primary">
     <nav>
         <div class=" mb-4 mt-4" style="text-align: center;">

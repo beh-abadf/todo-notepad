@@ -1,3 +1,4 @@
+{{-- This page has its own css files. --}}
 <!doctype html>
 <html lang="en">
 
@@ -17,7 +18,7 @@
 </head>
 
 <body>
-    <div class="global_div flex">
+    <div class="flex flex-row absolute w-screen h-screen">
 
         <div id="left_div">
             @include('left_nav')
