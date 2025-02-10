@@ -35,14 +35,19 @@
                 </label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
+            <div class="flex flex-col mt-4">
+                <a class="underline text-right text-md text-white dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                    href="{{ route('register') }}">
+                    {{ __('login.not_account') }}
+                </a>
+                <br>
                 @if (Route::has('password.request'))
-                    <a class="underline text-md text-white dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                    <a class="underline text-right text-md text-white dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                         href="{{ route('password.request') }}">
                         {{ __('login.forgotten_pass') }}
                     </a>
                 @endif
-
+                <br>
                 <x-primary-button class="btn btn-success ms-3">
                     {{ __('login.login') }}
                 </x-primary-button>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2024 at 12:47 AM
+-- Generation Time: Feb 08, 2025 at 04:02 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -113,10 +113,16 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '0001_01_01_000000_create_users_table', 1),
-(2, '0001_01_01_000001_create_cache_table', 1),
-(3, '0001_01_01_000002_create_jobs_table', 1),
-(4, '2024_12_10_212816_notes', 1);
+(1, '2025_02_07_155033_create_cache_locks_table', 1),
+(2, '2025_02_07_155033_create_cache_table', 1),
+(3, '2025_02_07_155033_create_failed_jobs_table', 1),
+(4, '2025_02_07_155033_create_job_batches_table', 1),
+(5, '2025_02_07_155033_create_jobs_table', 1),
+(6, '2025_02_07_155033_create_notes_table', 1),
+(7, '2025_02_07_155033_create_password_reset_tokens_table', 1),
+(8, '2025_02_07_155033_create_sessions_table', 1),
+(9, '2025_02_07_155033_create_users_table', 1),
+(10, '2025_02_07_155036_add_foreign_keys_to_notes_table', 1);
 
 -- --------------------------------------------------------
 
@@ -128,21 +134,10 @@ CREATE TABLE `notes` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `note_text` mediumtext NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
+  `checkbox_status` tinyint(1) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `notes`
---
-
-INSERT INTO `notes` (`id`, `note_text`, `user_id`, `created_at`, `updated_at`) VALUES
-(83, 'Text_1: This is text written by Behrang Abad Foomani and this text is just for test!', 9, '2024-12-16 23:50:20', '2024-12-17 00:07:35'),
-(84, 'Text_2: This is text written by Behrang Abad Foomani and this text is just for test!', 9, '2024-12-17 00:06:55', '2024-12-17 00:07:26'),
-(86, 'Text_3: This is text written by Behrang Abad Foomani and this text is just for test!', 9, '2024-12-17 00:08:55', '2024-12-17 00:08:55'),
-(87, 'Text_4: This is text written by Behrang Abad Foomani and this text is just for test!', 9, '2024-12-17 00:09:09', '2024-12-17 00:09:09'),
-(91, 'Text_7: This is text written by User_2(Behrang Abad Foomani) and this text is just for test!', 10, '2024-12-17 23:31:20', '2024-12-17 23:31:20'),
-(92, 'Text_5: This is text written by Behrang Abad Foomani and this text is just for test!', 9, '2024-12-17 23:34:31', '2024-12-17 23:35:54');
 
 -- --------------------------------------------------------
 
@@ -171,6 +166,14 @@ CREATE TABLE `sessions` (
   `last_activity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `sessions`
+--
+
+INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('febnOIsqzaf8rCzxGHWRSfp7sqduKT6z4N7U9qmH', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoia25aRlpZbmh0ZGs3UjZqbnJUaElHVnhpWGpGYmpQTEtwajNXS29BSyI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNDoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL3ZlcmlmeS1lbWFpbCI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI3OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvbG9naW4iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1739017986),
+('nf9Mpo1ryRDshiBaehdsiQbdpuv85NFCyPyMkrwY', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiaW1CUWpySW9na0JvMERaZUtpUmhINzQyVDFoMm1ld2pkbkdaamFlZCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fX0=', 1739025702);
+
 -- --------------------------------------------------------
 
 --
@@ -182,18 +185,11 @@ CREATE TABLE `users` (
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(9, 'Behrang', 'phl.cvt@gmail.com', '$2y$12$mlUWPdVXXtY/GOcxW9ZGJ.F5Q.Ud86SNyvCMz1mg7tznXhcTRZWJu', 'aD8DvS0nw6GlBnwVjyTRTNOL3QgmZo11kLe8nNK3fTH8T2sycQdzDECr9c3M', '2024-12-16 23:48:33', '2024-12-17 23:33:40'),
-(10, 'User_2', 'user_2@example.com', '$2y$12$XUO14EWCKd8wmkgnwkjNyOIuSGi5yAA2rLdZwPvQdZGBQ9WyoO/RO', NULL, '2024-12-17 00:40:08', '2024-12-17 00:40:08');
 
 --
 -- Indexes for dumped tables
@@ -285,19 +281,19 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `notes`
 --
 ALTER TABLE `notes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

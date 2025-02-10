@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 class NoteController extends Controller
 {
     private $note;
+    private $user_id;
+    private $note_id;
 
     function __construct(Note $note)
     {
@@ -18,7 +20,7 @@ class NoteController extends Controller
     }
 
     /**
-     * Retrieves 4 first notes.
+     * Retrieves 4 first notes of current user.
      */
     private function retrieve(User $current_user)
     {
@@ -29,9 +31,41 @@ class NoteController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Retrieves the note of current user.
+     */
+    private function the_note($current_user, $note_id)
+    {
+        return Note::where('user_id', '=', $current_user->id)
+            ->where('id', '=', $note_id)
+            ->first();
+    }
+
+    /**
+     * Retrieves the note of current user with via id.
+     */
+    private function the_note_with_ids($user_id, $note_id)
+    {
+        return Note::where('user_id', '=', $user_id)
+            ->where('id', '=', $note_id)
+            ->first();
+    }
+
+    /**
+     *Retrieves first page
      */
     public function index()
+    {
+        if (!Auth::check()) {
+            return view('main');
+        } else {
+            return redirect('/show');
+        }
+    }
+
+    /**
+     *Shows 4 notes of notes table for each page
+     */
+    public function show()
     {
         if (Auth::check()) {
 
@@ -39,10 +73,11 @@ class NoteController extends Controller
 
             //Temporary null and red till user to be athenticated
             $notes = $this->retrieve($current_user);
-            
+
+
             return view('main', [
                 'notes' => $notes,
-                'user' => $current_user
+                'user' => $current_user,
             ]);
         } else {
             return view('main');
@@ -50,7 +85,7 @@ class NoteController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Stores a newly created resource in storage.
      */
     public function store(Request $request)
     {
@@ -70,21 +105,50 @@ class NoteController extends Controller
             ]);
 
             return redirect()
-                ->route('home')
-                ->with('saved', 'Your data saved successfully!');
+                ->route('show')
+                ->with('saved', __('warnings.saved'));
         } else {
             return redirect('../login');
         }
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Stores a thicked note.
      */
-    public function edit(Note $note)
+    public function storeChecked(Request $request)
     {
         if (Auth::check()) {
 
             $current_user = Auth::user();
+
+            $checkbox_status = $request->checkbox_status;
+
+            $this->user_id = $request->user_id;
+            $this->note_id = $request->note_id;
+
+            $result = $this->the_note_with_ids($this->user_id, $this->note_id)
+                ->update([
+                    'checkbox_status' => $checkbox_status,
+                    'updated_at' => now()
+                ]);
+
+            return response()->json(['ob' => $result]);
+        } else {
+            return redirect('../login');
+        }
+    }
+
+    /**
+     * Shows the form for editing the specified resource.
+     */
+    public function edit($note_id)
+    {
+        if (Auth::check()) {
+
+            $current_user = Auth::user();
+
+            //The selected note for edit
+            $note = $this->the_note($current_user, $note_id);
 
             //Temporary null and red till user to be athenticated
             $notes = $this->retrieve($current_user);
@@ -101,9 +165,9 @@ class NoteController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Updates the specified resource in storage.
      */
-    public function update(Request $request, Note $note)
+    public function update(Request $request, $note_id)
     {
         if (Auth::check()) {
 
@@ -113,32 +177,36 @@ class NoteController extends Controller
                 'note_text' => ['required', 'string', 'max:500'],
             ]);
 
-            $note->update([
-                'note_text' => $request['note_text'],
-                'user_id' => $current_user->id,
-                'updated_at' => now(),
-            ]);
+            $this->the_note($current_user, $note_id)
+                ->update([
+                    'note_text' => $request['note_text'],
+                    'user_id' => $current_user->id,
+                    'updated_at' => now(),
+                ]);
 
             return redirect()
-                ->route('home')
-                ->with('updated', "Your data updated successfully!");
+                ->route('show')
+                ->with('updated', __('warnings.updated'));
         } else {
             return redirect('../login');
         }
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Removes the specified resource from storage.
      */
-    public function destroy(Note $note)
+    public function destroy($note_id)
     {
         if (Auth::check()) {
 
-            $note->delete();
+            $current_user = Auth::user();
+
+            $this->the_note($current_user, $note_id)
+                ->delete();
 
             return redirect()
-                ->route('home')
-                ->with('deleted', "Your data deleted successfully!");
+                ->route('show')
+                ->with('deleted', __('warnings.deleted'));
         } else {
             return redirect('../login');
         }

@@ -1,24 +1,29 @@
-@font-face{
-    font-family: 'Arial';
-    src: url('../fonts/ARIAL.TTF')format('truetype');
+@font-face {
+    font-family: "Arial";
+    src: url("../fonts/ARIAL.TTF") format("truetype");
 }
 
 @font-face {
-    font-family: 'Calibri';
-    src: url('../fonts/CALIBRI.TTF')format('truetype');
+    font-family: "Calibri";
+    src: url("../fonts/CALIBRI.TTF") format("truetype");
 }
 
 @font-face {
-     font-family: 'Comic';
-    src: url('../fonts/COMIC.TTF')format('truetype');
+    font-family: "Comic";
+    src: url("../fonts/COMIC.TTF") format("truetype");
 }
 
 @font-face {
-    font-family: 'Itcblkad';
-    src: url('../fonts/ITCBLKAD.TTF')format('truetype');
+    font-family: "Itcblkad";
+    src: url("../fonts/ITCBLKAD.TTF") format("truetype");
 }
 
 @font-face {
-    font-family: 'Npimovazi';
-    src: url('../fonts/NPIMOVAZI.TTF')format('truetype');
+    font-family: "Npimovazi";
+    src: url("../fonts/NPIMOVAZI.TTF") format("truetype");
+}
+
+@font-face {
+    font-family: "Vazir";
+    src: url("../fonts/Vazir.TTF") format("truetype");
 }

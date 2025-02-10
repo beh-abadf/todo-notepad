@@ -23,68 +23,25 @@
 }
 
 .card-div > div:nth-child(2) {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     padding: 10px;
     width: 100%;
     height: 25%;
 }
 
-.card-div > div:nth-child(2) > button:nth-child(1) {
-    margin-right: auto;
-    margin-left: 5px;
-}
-
-.card-div > div:nth-child(2) > button:nth-child(2) {
-    margin-left: 10px;
-}
-
-#check_id {
-    width: 10%;    
-    margin-left: 5px;
-}
-
-#check_text {
-    color: rgb(0, 0, 0);
-    margin-top: 8px;
-    color: green;
-}
-
-#links {
-    list-style: none;
-}
-
-#links button {
-    border-color: transparent;
-    border-radius: 5px;
-    margin: 5px;
-    background-color: transparent;
-    box-shadow: 2px 2px 10px;
-    outline: none;
-    width: 55px;
-    height: 55px;
-    list-style: none;
-}
-
-#links button b {
-    font-size: 20px;
-}
-
 @media screen and (max-width: 1260px) {
-    #left_div {
+    #right_div {
         display: none;
     }
 }
 
-#left_div {
+#right_div {
     position: relative;
-    height: 50%;
+    height: 100%;
     width: 32%;
 }
 
-#side_nav {
+#right_nav {
     box-shadow: -0.5px 0.5px 15px rgb(0, 0, 0);
     padding-right: 10px;
     padding-top: 10px;
@@ -95,7 +52,7 @@
     z-index: 2;
 }
 
-#side_nav > nav > ul > li {
+#right_nav > nav > ul > li {
     border-style: solid;
     border-color: white;
     border-width: 0.5px;
@@ -105,7 +62,7 @@
     margin-top: 20px;
 }
 
-#side_nav > nav > ul > li button {
+#right_nav > nav > ul > li button {
     background-color: transparent;
     text-align: right;
     text-justify: center;
@@ -117,15 +74,15 @@
     outline: none;
 }
 
-#side_nav > nav > ul > li button:hover {
+#right_nav > nav > ul > li button:hover {
     background-color: rgb(86, 139, 255);
 }
 
-#side_nav > nav > ul > li button:active {
+#right_nav > nav > ul > li button:active {
     background-color: rgb(148, 177, 255);
 }
 
-#right_div {
+#left_div {
     position: relative;
     width: 100%;
     height: 100%;
@@ -193,33 +150,12 @@
     margin-bottom: 20px;
 }
 
-#txt_ar_options > button:nth-child(1) {
-    width: 5%;
-    margin-left: 4px;
-}
-
-#txt_ar_options > button:nth-child(2) {
-    width: 5%;
-    margin-left: 4px;
-}
-
-#txt_ar_options > select:nth-child(3) {
+#txt_ar_options > select:nth-child(1) {
     width: 50%;
-    margin-left: 4px;
+    margin-right: 10px;
 }
-#txt_ar_options > select:nth-child(4) {
+#txt_ar_options > select:nth-child(2) {
     width: 50%;
-    margin-left: 4px;
-}
-
-#left-to-right {
-    background-image: url("../icons/text-direction-ltr.svg");
-    background-size: cover;
-}
-
-#right-to-left {
-    background-image: url("../icons/text-direction-rtl.svg");
-    background-size: cover;
 }
 
 .pagination {

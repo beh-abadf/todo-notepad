@@ -3,8 +3,8 @@
 return [
     'name'=>  " نام: " ,
     'email'=> " آدرس ایمیل: ",
-    'password' => " رمز عبور: ",
-    'password_confirmation' => ' تکرار رمز عبور: ',
+    'password' => " گذرواژه: ",
+    'password_confirmation' => ' تکرار گذرواژه: ',
     'already_registered' => ' قبلاً ثبت نام کرده‌اید؟ ',
     'register'=>' ثبت نام '
 ];

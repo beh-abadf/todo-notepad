@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="rtl">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>
-        ToDo Notepad
+        Todo Notepad
     </title>
 
     <!-- BootstrapCSS -->
@@ -15,6 +15,8 @@
 
     <!-- Fonts -->
     <link href="css/global_fonts_for_all.css" rel="stylesheet" />
+
+    <link rel="icon" href="icons/pencil-square.svg" type="image/x-icon">
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -38,7 +40,14 @@
             {{ $slot }}
         </main>
 
-        
+        <p style="
+    color: red;
+    margin:15px;
+    text-align:left;
+    ">
+            <b>
+                {{ __('mark.my_name') }}
+            </b>
     </div>
 </body>
 

@@ -14,6 +14,16 @@ $(document).ready(function () {
     $("#font_size_selector").on("change", function () {
         fontSizeSelectedValue = $(this).val();
         textEditor.css("font-size", fontSizeSelectedValue);
-        console.log(fontSizeSelectedValue);
     });
+    $("#left-to-right").on("click", function (event) {
+        event.preventDefault();
+        fontSizeSelectedValue = $(this).val();
+        textEditor.css("text-align", "right");
+    });
+    $("#right-to-left").on("click", function (event) {
+        event.preventDefault();
+        fontSizeSelectedValue = $(this).val();
+        textEditor.css("text-align", "left");
+    });
+
 });

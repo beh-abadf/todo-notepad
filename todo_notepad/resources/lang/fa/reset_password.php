@@ -2,7 +2,7 @@
 
 return [
     'email'=> " آدرس ایمیل: ",
-    'password' => " رمز عبور: ",
-    'password_confirmation' => ' تکرار رمز عبور: ',
-    'reset_password' => ' بازنشانی رمز عبور '
+    'password' => " گذرواژه: ",
+    'password_confirmation' => ' تکرار گذرواژه: ',
+    'reset_password' => ' بازنشانی گذرواژه '
 ];

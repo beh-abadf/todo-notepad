@@ -1,5 +1,5 @@
 {{-- Left navigation part of pages --}}
-<div id="left_nav" class="text-bg-primary">
+<div id="side_nav" class="text-bg-primary">
     <nav>
         <div class=" mb-4 mt-4" style="text-align: center;">
             <div>
@@ -16,22 +16,22 @@
         list-style-type: none">
             <li>
                 <button onclick="window.location.href='/'" style="text-decoration: none;">
-                    Main Page
+                    {{ __('head_side.main_page') }}
                 </button>
             </li>
             <li>
                 <button onclick="window.location.href='/register'" style="text-decoration: none;">
-                    Register
+                    {{ __('head_side.register') }}
                 </button>
             </li>
             <li>
                 <button onclick="window.location.href='/login'" style="text-decoration: none;">
-                    Login
+                    {{ __('head_side.login') }}
                 </button>
             </li>
             <li>
                 <button onclick="window.location.href='/logout'" style="text-decoration: none;">
-                    Logout
+                    {{ __('head_side.logout') }}
                 </button>
             </li>
         </ul>

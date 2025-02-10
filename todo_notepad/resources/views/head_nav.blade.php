@@ -4,22 +4,22 @@
         <ul class="center">
             <li>
                 <button onclick="window.location.href='/'">
-                    Main Page
+                    {{ __('head_side.main_page') }}
                 </button>
             </li>
             <li>
                 <button onclick="window.location.href='/register'">
-                    Register
+                    {{ __('head_side.register') }}
                 </button>
             </li>
             <li>
                 <button onclick="window.location.href='/login'">
-                    Login
+                    {{ __('head_side.login') }}
                 </button>
             </li>
             <li>
                 <button onclick="window.location.href='/logout'">
-                    Logout
+                    {{ __('head_side.logout') }}
                 </button>
             </li>
         </ul>
